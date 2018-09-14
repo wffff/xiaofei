@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="untitled8:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/untitled8_jar</output-path>
+    <root id="archive" name="untitled8.jar">
+      <element id="module-output" name="untitled8" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/activemq-all-5.15.6.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/postgresql-9.1-901-1.jdbc4.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
