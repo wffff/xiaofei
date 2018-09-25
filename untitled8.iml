@@ -7,7 +7,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="mongo-java-driver-3.2.2" level="project" />
     <orderEntry type="library" name="activemq-all-5.15.6" level="project" />
-    <orderEntry type="library" name="mongodb-driver-3.2.2" level="project" />
   </component>
 </module>
