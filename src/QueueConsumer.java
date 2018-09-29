@@ -28,7 +28,7 @@ public class QueueConsumer {
     private Destination destination;
     // 注意这里是消息接收（消费）者
     private MessageConsumer messageConsumer;
-    public static final String QUEUE_NAME = "hello amq";
+    public static final String QUEUE_NAME = "device1";
 
     public static void main(String[] args) {
         QueueConsumer consumer = new QueueConsumer();
@@ -122,9 +122,9 @@ public class QueueConsumer {
                     try {
                         TextMessage msg = (TextMessage) message;
                         String str = msg.getText();
-                        MongoClient mongoClient = new MongoClient("localhost", 27017);
-                        MongoDatabase mongoDatabase = mongoClient.getDatabase("dbtest");
-                        MongoCollection<Document> collection = mongoDatabase.getCollection("users");
+                        MongoClient mongoClient = new MongoClient(MongoConstants.HOST, MongoConstants.PORT);
+                        MongoDatabase mongoDatabase = mongoClient.getDatabase(MongoConstants.DATABASENAME);
+                        MongoCollection<Document> collection = mongoDatabase.getCollection(MongoConstants.DEVICE1);
                         Document document = new Document();
                         String name = str.substring(0, str.lastIndexOf("#"));
                         String code = str.substring(str.lastIndexOf("#") + 1);
