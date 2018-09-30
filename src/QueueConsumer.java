@@ -5,6 +5,8 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 import org.bson.Document;
 
 import javax.jms.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,6 +31,7 @@ public class QueueConsumer {
     // 注意这里是消息接收（消费）者
     private MessageConsumer messageConsumer;
     public static final String QUEUE_NAME = "device1";
+    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     public static void main(String[] args) {
         QueueConsumer consumer = new QueueConsumer();
@@ -127,12 +130,14 @@ public class QueueConsumer {
                         MongoCollection<Document> collection = mongoDatabase.getCollection(MongoConstants.DEVICE1);
                         Document document = new Document();
                         String name = str.substring(0, str.lastIndexOf("#"));
-                        String code = str.substring(str.lastIndexOf("#") + 1);
+                        String code = str.substring(str.lastIndexOf("#") + 1,str.lastIndexOf("%"));
+                        Date time = df.parse(str.substring(str.lastIndexOf("%") + 1));
                         document.append("name", name);
                         Map<String, Object> m = CodeEraser(code);
                         document.append("flow",m.get("flow"));
                         document.append("speed",m.get("speed"));
                         document.append("sum",m.get("sum"));
+                        document.append("time",time);
                         collection.insertOne(document);
                         System.out.println(str);
                         // 可以通过此方法反馈消息已收到
